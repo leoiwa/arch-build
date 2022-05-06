@@ -9,7 +9,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [osu-lazer, weechat-notify-send, fpp, redsocks, drill, k6, redis-desktop-manager, git-cola, makedeb, logseq-desktop, f3d]
+        repos: [baidunetdisk-electron, redis-desktop-manager, git-cola, makedeb, logseq-desktop, fcitx-sogoupinyin, google-chrome, imhex, imhex-patterns-git, intellij-idea-ce, lombok, netlogo, spring-tool-suite, visual-studio-code-bin, wps-office-cn, youdao-dict]
 
       fail-fast: false
       
@@ -37,7 +37,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [breeze10, python-octodns]
+        PKGBUILDs: [""]
 
       fail-fast: false
       
