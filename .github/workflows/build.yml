@@ -3,7 +3,7 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron:  '30 5,17 * * *'
+    - cron:  '50 5,12,18 * * *'
 
 jobs:
   buildAUR:
