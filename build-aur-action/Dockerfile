@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM manjarolinux/base:latest
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN date
