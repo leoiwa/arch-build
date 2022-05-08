@@ -15,7 +15,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [baidunetdisk-electron, direwolf-git, fcitx-sogoupinyin, fsearch-git, git-cola, google-chrome, imhex, imhex-patterns-git, intellij-idea-ce, kafka, logseq-desktop-bin, lombok, makedeb, netlogo, nginx-mod-rtmp, ns3, portainer-bin, pycharm-community-jre, qtscrcpy, redis-desktop-manager, spdlog-git, spring-tool-suite, sqlitestudio, ttf-ms-fonts, visual-studio-code-bin, wps-office-cn, xunlei-bin, youdao-dict, zookeeper]
+        repos: [baidunetdisk-electron, direwolf-git, fcitx-sogoupinyin, fsearch-git, git-cola, google-chrome, imhex, imhex-patterns-git, intellij-idea-ce, kafka, logseq-desktop-bin, lombok-spring-tool-suite, makedeb, netlogo, nginx-mod-rtmp, ns3, portainer-bin, pycharm-community-jre, qtscrcpy, redis-desktop-manager, spdlog-git, spring-tool-suite, sqlitestudio, ttf-ms-fonts, visual-studio-code-bin, wps-office-cn, xunlei-bin, youdao-dict, zookeeper]
 
       fail-fast: false
       
