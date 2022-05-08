@@ -3,7 +3,13 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron:  '30 5,13,18 * * *'
+    - cron:  '30 14 * * *'
+  workflow_dispatch:
+    inputs:
+      pkgname:
+        description: 'Package name to build'
+        required: true
+        type: string
 
 jobs:
   buildAUR:
@@ -18,10 +24,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - uses: ./build-aur-action
+    - if: ${{github.event_name == 'schedule'}}
+      uses: ./build-aur-action
       with:
         repo-name: ${{ matrix.repos }}
     
+    - if: ${{github.event_name == 'workflow_dispatch'}}
+      uses: ./build-aur-action
+      with:
+        repo-name: ${{ github.event.inputs.pkgname }}
+  
     - uses: actions/upload-artifact@v2
       with:
         path: ./*/*.pkg.tar.zst
