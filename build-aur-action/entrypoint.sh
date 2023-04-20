@@ -2,10 +2,10 @@
 
 pkgname=$1
 
-sudo cat << EOM >> /etc/pacman.conf
+sudo bash -c 'cat << EOM >> /etc/pacman.conf
 [archlinuxcn]
 Server = https://repo.archlinuxcn.org/x86_64
-EOM
+EOM'
 
 sudo chmod a+rw -R ./
 
