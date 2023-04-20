@@ -12,7 +12,8 @@ on:
         type: string
 
 jobs:
-  buildAUR:
+  buildAllAUR:
+    if: ${{github.event_name == 'schedule' || github.event_name == 'push' }}
     strategy:
       matrix:
         repos: [baidunetdisk-electron, direwolf-git, fcitx-sogoupinyin, fsearch-git, git-cola, google-chrome, imhex, imhex-patterns-git, intellij-idea-ce, kafka, logseq-desktop-bin, lombok-spring-tool-suite, makedeb, netlogo, nginx-mod-rtmp, ns3, portainer-bin, pycharm-community-jre, qtscrcpy, redis-desktop-manager, spdlog-git, spring-tool-suite, sqlitestudio, ttf-ms-fonts, visual-studio-code-bin, wps-office-cn, xunlei-bin, youdao-dict, zookeeper, gephgui-wry-git]
@@ -24,13 +25,29 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - if: ${{github.event_name == 'schedule' || github.event_name == 'push' }}
-      uses: ./build-aur-action
+    - uses: ./build-aur-action
       with:
         repo-name: ${{ matrix.repos }}
+  
+    - uses: actions/upload-artifact@v2
+      with:
+        path: ./*/*.pkg.tar.zst
+        name: ${{ matrix.repos }}
+        
+    - uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        tag: "packages"
+        artifacts: "./*/*.zst"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+  buildSingleAUR:
+    if: ${{github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
     
-    - if: ${{github.event_name == 'workflow_dispatch' }}
-      uses: ./build-aur-action
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./build-aur-action
       with:
         repo-name: ${{ github.event.inputs.pkgname }}
   
@@ -45,7 +62,7 @@ jobs:
         tag: "packages"
         artifacts: "./*/*.zst"
         token: ${{ secrets.GITHUB_TOKEN }}
-
+        
   buildNonAUR:
     strategy:
       matrix:
@@ -80,7 +97,7 @@ jobs:
   uploadToOneDrive:      
     runs-on: ubuntu-latest
     if: always()
-    needs: [buildAUR, buildNonAUR]
+    needs: [buildAllAUR, buildSingleAUR, buildNonAUR]
 
     steps:
       - uses: actions/checkout@v2
