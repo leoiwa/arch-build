@@ -2,7 +2,6 @@ FROM manjarolinux/base:latest
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN date
-RUN pacman-mirrors -c China
 RUN pacman -Syu --noconfirm
 RUN pacman -S base-devel git gtk3 --noconfirm
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf && \
