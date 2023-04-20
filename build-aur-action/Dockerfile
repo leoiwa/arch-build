@@ -5,7 +5,7 @@ RUN date
 RUN pacman -Syu --noconfirm
 RUN pacman -S base-devel git --noconfirm
 # builder user and workdir
-ARG user=builder
+ARG user=makepkg
 RUN useradd --system --create-home $user \
   && echo "$user ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$user
 USER $user
