@@ -14,4 +14,4 @@ sudo pacman -Sy --noconfirm && sudo pacman -S --noconfirm archlinuxcn-keyring
 sudo pacman -S --noconfirm yay
 
 
-yay -Ssy --noconfirm --builddir=./ "$pkgname"
+yay -Syu --noconfirm --builddir=./ "$pkgname"
