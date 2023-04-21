@@ -2,7 +2,11 @@
 
 pkgname=$1
 
-useradd builder -m
-echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-cd /builder
-sudo --set-home -u builder yay -S --noconfirm --builddir=./ "$pkgname"
+useradd builduser -m
+echo "builduser ALL = NOPASSWD: /usr/bin/pacman" > /etc/sudoers.d/builduser-pacman
+chmod 440 "/etc/sudoers.d/builduser-pacman"
+chown builduser ./
+sudo -u builduser yay -G --noconfirm --builddir=./ "$pkgname"
+cd $pkgname
+sudo -u builduser makepkg -s --noconfirm -L
+
