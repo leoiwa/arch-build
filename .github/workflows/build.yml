@@ -16,7 +16,7 @@ jobs:
     if: ${{github.event_name == 'schedule' || github.event_name == 'push' }}
     strategy:
       matrix:
-        repos: [fsearch-git, imhex, imhex-patterns-git, intellij-idea-ce, kafka, logseq-desktop-bin, lombok-spring-tool-suite, ns3, portainer-bin, pycharm-community-jre, qtscrcpy, redis-desktop-manager, spdlog-git, spring-tool-suite, sqlitestudio, zookeeper, gephgui-wry-git]
+        repos: [logseq-desktop-bin, portainer-bin, pycharm-community-jre, qtscrcpy, spdlog-git, spring-tool-suite, sqlitestudio, gephgui-wry-git]
 
       fail-fast: false
       
