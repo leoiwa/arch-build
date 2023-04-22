@@ -3,7 +3,7 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron:  '30 14 * * *'
+    - cron:  '30 14 5,25 * *'
   workflow_dispatch:
     inputs:
       pkgname:
