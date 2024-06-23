@@ -7,6 +7,7 @@ RUN pacman -S base-devel git gtk3 --noconfirm
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf && \
     echo "Server = https://repo.archlinuxcn.org/x86_64" >> /etc/pacman.conf
 RUN pacman-key --init
+RUN pacman-key --lsign-key "farseerfc@archlinux.org"
 RUN pacman -Syu --noconfirm && pacman -S --noconfirm archlinuxcn-keyring
 RUN pacman -S --noconfirm yay
 
